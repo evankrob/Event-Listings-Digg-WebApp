@@ -1,0 +1,26 @@
+  <% if form.object.errors.any? %>
+    <div id="error_explanation">
+      <h3><%= pluralize(form.object.errors.count, "error") %> prohibited this occurrence from being saved:</h3>
+
+      <ul>
+      <% form.object.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="input-append">
+    <%= form.text_field :starts_at_date, :placeholder => 'Pick a date', :class => 'input-small datepicker' %>
+    <span class="add-on"><i class="icon-calendar"></i></span>
+  </div>
+
+  <div class="input-append bootstrap-timepicker">
+    <%= form.text_field :starts_at_time, :placeholder => 'Start time', :class => 'input-small timepicker' %>
+    <span class="add-on"><i class="icon-time"></i></span>
+  </div>
+
+  <div class="input-append bootstrap-timepicker">
+    <%= form.text_field :ends_at_time, :placeholder => 'End time', :class => 'input-small timepicker' %>
+    <span class="add-on"><i class="icon-time"></i></span>
+  </div>

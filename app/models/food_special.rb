@@ -1,0 +1,2 @@
+class FoodSpecial < Special
+end

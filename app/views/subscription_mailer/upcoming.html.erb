@@ -1,0 +1,5 @@
+<h2>Upcoming Events</h2>
+
+<%= render :partial => 'events/table', :locals => {:events => @subscription.events, :email => true, :host => @host} %>
+
+<p>To see more details, or to unsubscribe, <%= link_to 'click here', subscription_url(@subscription, :token => @subscription.token, :host => @host) %>.</p>

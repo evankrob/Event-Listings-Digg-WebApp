@@ -1,0 +1,19 @@
+<p>
+  To import events, <%= link_to 'download the template', template_admin_events_path %> and fill it with events.<br />
+  <strong>Note</strong> if there are any errors, you must correct them and reupload, or none of the events will import.<br />
+  <strong>Note</strong> If you upload the same event multiple times, you may end up with duplicate events.
+</p>
+
+<% if @errors and @errors.any? %>
+  <h3>There were errors while importing the file</h3>
+  <ul>
+  <% @errors.each do |error| %>
+    <li><%= error %></li>
+  <% end %>
+  </ul>
+<% end %>
+
+<%= form_tag upload_import_admin_events_path, :multipart => true do %>
+  <p><%= file_field_tag 'import' %></p>
+  <p><%= submit_tag 'Upload' %></p>
+<% end %>

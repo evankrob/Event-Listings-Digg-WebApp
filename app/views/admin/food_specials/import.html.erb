@@ -1,0 +1,19 @@
+<p>
+  To import food specials, <%= link_to 'download the template', template_admin_food_specials_path %> and fill it with specials.<br />
+  <strong>Note</strong> if there are any errors, you must correct them and reupload, or none of the specials will import.<br />
+  <strong>Note</strong> If you upload the same special multiple times, you may end up with duplicate specials.
+</p>
+
+<% if @errors and @errors.any? %>
+  <h3>There were errors while importing the file</h3>
+  <ul>
+  <% @errors.each do |error| %>
+    <li><%= error %></li>
+  <% end %>
+  </ul>
+<% end %>
+
+<%= form_tag upload_import_admin_food_specials_path, :multipart => true do %>
+  <p><%= file_field_tag 'import' %></p>
+  <p><%= submit_tag 'Upload' %></p>
+<% end %>

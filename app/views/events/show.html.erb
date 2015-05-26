@@ -1,0 +1,71 @@
+<h2><%= @event.name %></h2>
+<%= approval_status(@event)%>
+<section>
+  <div class="row-fluid">
+    <div class='span9'>
+      <h3>Event Details</h3>
+      <div id="event_detail" class="content">
+
+        <table class='table'>
+          <tbody>
+            <tr>
+              <th>Venue</th>
+              <td><%= link_to @event.venue.name, venue_path(@event.venue.city, @event.venue.to_uri) %> (<%= link_to @event.venue.city, city_path(@event.venue.city) %>)</td>
+            </tr>
+            <tr>
+              <th>Category</th>
+              <td><%= @event.category.name %></td>
+            </tr>
+            <tr>
+              <th>Tags</th>
+              <td><%= @event.tag_list.map { |tag| link_to tag, tag_path(tag) }.join(', ').html_safe %></td>
+            </tr>
+            <% unless @event.url.blank? %>
+            <tr>
+              <th>URL</th>
+              <td><%= auto_link @event.url unless @event.url.blank? %></td>
+            </tr>
+            <% end %>
+            <tr>
+              <th>Description</th>
+              <td><%= auto_link @event.html_description unless @event.html_description.blank? %></td>
+            </tr>
+            <tr>
+              <th>
+                Times
+                <p><small><a href="#new-time" class="button" data-toggle="modal"><i class="icon-plus"></i>add another time</a></small></p>
+              </th>
+              <td id="event-times">
+                <% @event.occurrences.each do |occurrence|  %>
+                  <p><%= occurrence.starts_at.to_s(:pretty) %></p>
+                <% end %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="span3">
+      &nbsp;
+    </div>
+  </div>
+
+  <div class="modal hide" id="new-time">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      <h3>Submit a new time</h3>
+    </div>
+
+    <% occurrence = @event.occurrences.build %>
+    <%= form_for(occurrence, :url => event_occurrences_path(@event)) do |f| %>
+    <div class="modal-body">
+      <%= render :partial => 'occurrences/form', :locals => {:form => f} %>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+      <%= f.submit 'Submit', :class => 'btn btn-primary' %>
+    </div>
+    <% end %>
+  </div>
+</section>

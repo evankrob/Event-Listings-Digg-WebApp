@@ -1,0 +1,46 @@
+body {
+  font-size: 1em;
+  padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+}
+
+section {
+  padding-top: 30px;
+}
+
+#live-search { margin: 0 !important }
+.search-query { background-color: rgb(255, 255, 255) !important; color: rgb(51, 51, 51) !important }
+
+table.row-links tbody tr:hover {
+  cursor: pointer;
+}
+
+.nav .icon, .nav .icon-white { margin-top: 3px }
+
+.well h4:first-child { margin-top: 0px }
+
+.two-column {
+  column-count: 2;
+  -webkit-column-count: 2;
+  -moz-column-count: 2;
+  padding: 5px;
+}
+
+#footer {
+  height: 30px;
+}
+
+#footer.navbar > .navbar-inner {
+  min-height: auto;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 0px;
+}
+#footer.navbar > .navbar-inner, #footer.navbar > .navbar-inner a {
+  color: #ccc !important;
+}
+#footer.navbar > .navbar-inner a {
+  text-decoration: underline;
+}
+
+/* For modals */
+.dropdown-menu { z-index: 1999 !important }

@@ -1,0 +1,15 @@
+<% query_params ||= live_query_params %>
+
+<ul class="nav nav-tabs live-loader" data-target="#loaded" data-query="<%= query_params %>">
+  <li class="active"><%= link_to 'Events', @city ? city_events_path(@city) : events_path %></li>
+  <li><%= link_to 'Food Specials', @city ? city_food_specials_path(@city) : food_specials_path %></li>
+  <li><%= link_to 'Drink Specials', @city ? city_drink_specials_path(@city) : drink_specials_path %></li>
+</ul>
+
+<div id="loaded">
+<% if @events %>
+  <%= render :partial => 'events/table', :locals => {:events => @events} %>
+<% else %>
+  <div class="live-load" data-path="<%= events_path(:ajax) %>" data-query="<%= query_params %>"></div>
+<% end %>
+</div>

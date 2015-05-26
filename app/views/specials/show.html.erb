@@ -1,0 +1,10 @@
+<h2>Specials at <%= @special.venue.name %></h2>
+
+<p>
+  <%= link_to "See everthing at #{h @special.venue.name} &raquo;".html_safe, venue_path(@special.venue.city, @special.venue.to_uri) %>
+</p>
+
+<% @special.each_day do |day, special| %>
+  <legend><%= day %></legend>
+  <p><%= special %></p>
+<% end %>

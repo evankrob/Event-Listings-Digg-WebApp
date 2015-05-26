@@ -1,0 +1,44 @@
+<div class="well sidebar-nav">
+  <h4>Browse Raleigh events</h4>
+  <div class="two-column">
+    <% Category.order('name').each do |category| %>
+      <p><%= link_to category.name, category_path(category.name) %></p>
+    <% end %>
+  </div>
+
+  <h4>Browse by city</h4>
+  <div class="two-column">
+    <% Venue.major_cities.each do |city| %>
+      <p><%= link_to city, city_path(city) %></p>
+    <% end %>
+      <p><%= link_to 'Other', other_cities_path %></p>
+  </div>
+
+  <h4>Browse by date</h4>
+  <div class="two-column">
+    <p><%= link_to "Today's Events", today_path  %></p>
+    <p><%= link_to "This Weekend's Events", this_weekend_path  %></p>
+  </div>
+</div>
+
+<div class="well sidebar-nav">
+  <h4>What's Up Raleigh</h4>
+  <ul class="nav nav-list">
+    <li class="nav-header">Filters</li>
+      <li><%= link_to "Today's Events", today_path  %></li>
+      <li><%= link_to "This Weekend's Events", this_weekend_path  %></li>
+
+    <li class="nav-header">Actions</li>
+      <li><%= link_to "Submit an Event", new_event_path  %></li>
+      <li><%= link_to "Search for an Event", search_path  %></li>
+      <li><%= link_to "Subscribe to Events", new_subscription_path  %></li>
+  </ul>
+</div>
+
+<div class="well sidebar-nav">
+  <h4>Follow Us</h4>
+  <ul class="nav nav-list">
+    <li><%= link_to "#{image_tag('twitter-bird-light-bgs-small.png')} Twitter".html_safe, Wur::CONFIG['twitter_url'], :alt => 'Twitter', :target => '_blank' %></li>
+    <li><%= link_to "#{image_tag('f_logo_small.png')} Facebook".html_safe, Wur::CONFIG['facebook_url'], :alt => 'Facebook', :target => '_blank' %></li>
+  </ul>
+</div>

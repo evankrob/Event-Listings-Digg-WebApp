@@ -1,0 +1,5 @@
+Subscription.daily.find_each do |subscription|
+  if subscription.events.any?
+    SubscriptionMailer.upcoming(subscription).deliver
+  end
+end

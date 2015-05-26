@@ -1,0 +1,9 @@
+UPCOMING EVENTS
+
+<% @subscription.events.each do |event| %>
+<%= event.name %> (<%= event.venue.name %>, <%= event.venue.city %>)
+<%= event.occurrences.map { |o| pretty_start o, false }.join(', ') %>
+
+<% end %>
+
+To see more details, or to unsubscribe, go to <%= subscription_url(@subscription, :token => @subscription.token, :host => @host) %>.

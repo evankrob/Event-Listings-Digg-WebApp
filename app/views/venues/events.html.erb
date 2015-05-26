@@ -1,0 +1,7 @@
+<h2>Events at <%= @venue.name %></h2>
+
+<p>
+  <%= link_to "See everthing at #{h @venue.name} &raquo;".html_safe, venue_path(@venue.city, @venue.to_uri) %>
+</p>
+
+<%= render :partial => 'events/table', :locals => {:events => @events} %>

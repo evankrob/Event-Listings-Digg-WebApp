@@ -1,0 +1,25 @@
+<div class="btn-group">
+  <a href="#" id="refine_search" class="btn btn-small">Refine Search</a>
+  <a href="<%= new_subscription_path(request.query_parameters) %>" class="btn btn-small btn-info">Subscribe to Search</a>
+</div>
+
+<div id="search" class="well hide">
+  <%= form_tag search_results_path, :method => 'get', :class => 'form-horizontal' do %>
+    <%= render :partial => 'form' %>
+
+    <div class="form-actions">
+      <%= submit_tag 'Search', :class => 'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>
+
+<%= render :template => 'events/index', :layout => nil %>
+
+<script>
+  $(function() {
+    $('#refine_search').click(function() {
+      $('#search').slideToggle(300);
+      return false;
+    });
+  });
+</script>

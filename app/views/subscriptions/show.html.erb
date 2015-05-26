@@ -1,0 +1,26 @@
+<legend>Your subscription</legend>
+
+<table class="table table-bordered">
+  <tr>
+    <th>Email</th>
+    <td><%= @subscription.email %></td>
+  </tr>
+
+<% @subscription.each_search_param do |key ,val| %>
+  <tr>
+    <th><%= key.titleize %></th>
+    <td><%= val %></td>
+  </tr>
+<% end %>
+</table>
+
+<legend>Upcoming events</legend>
+<% if @subscription.events.any? %>
+  <%= render :partial => 'events/table', :locals => {:events => @subscription.events} %>
+<% else %>
+  <em>None</em>
+<% end %>
+
+<div class="form-actions">
+  <%= link_to 'Unsubscribe', subscription_path(@subscription, :token => @subscription.token), :method => :delete, :confirm => 'Are you sure you want to unsubscribe?', :class => 'btn btn-small btn-danger' %>
+</div>

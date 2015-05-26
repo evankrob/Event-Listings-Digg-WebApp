@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  starts_at: 2012-03-24 11:53:30
+  ends_at: 2012-03-24 11:53:30
+  event_id: 1
+
+two:
+  starts_at: 2012-03-24 11:53:30
+  ends_at: 2012-03-24 11:53:30
+  event_id: 1

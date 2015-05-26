@@ -1,0 +1,7 @@
+<h2><%= @category.name %></h2>
+
+<% if @events.any? %>
+  <%= render :partial => 'events/table', :locals => {:events => @events} %>
+<% else %>
+<em>Sorry, there are no events in this category right now.</em>
+<% end %>

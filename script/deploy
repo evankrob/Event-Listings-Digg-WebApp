@@ -1,0 +1,19 @@
+#!/bin/sh
+
+cd `dirname $0`/..
+
+bundle install --path vendor/bundle --without development:test
+
+# Create or update database
+if [ -f db/production.sqlite3 ]; then
+  RAILS_ENV=production bundle exec rake db:migrate
+else
+  RAILS_ENV=production bundle exec rake db:create
+  RAILS_ENV=production bundle exec rake db:schema:load
+fi
+
+# Precompile assets
+RAILS_ENV=production bundle exec rake assets:precompile
+
+# Tell Passenger to restart
+touch tmp/restart.txt

@@ -1,0 +1,2 @@
+class DrinkSpecialsController < SpecialsController
+end

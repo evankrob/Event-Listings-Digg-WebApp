@@ -1,0 +1,11 @@
+email:
+  to: [add yours]
+  from: [add yours]
+  smtp_settings:
+    :address: [add yours]
+    :port: 587
+    :domain: [add yours]
+    :user_name: [add yours]
+    :password: [add yours]
+    :authentication: plain
+    :enable_starttls_auto: true

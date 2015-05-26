@@ -1,0 +1,31 @@
+<h2>Contact Us</h2>
+
+<%= form_tag '/contact' do %>
+<div class="row-fluid">
+  <div class="span4">
+    <div class="control-group">
+      <%= label_tag :name, 'Your name' %>
+      <%= text_field_tag :name, params[:name], :autofocus => true %>
+    </div>
+
+    <div class="control-group">
+      <%= label_tag :email, 'Your email' %>
+      <%= text_field_tag :email, params[:email] %>
+    </div>
+
+    <div class="control-group">
+      <%= label_tag :phone, 'Your phone (optional)' %>
+      <%= text_field_tag :phone, params[:phone] %>
+    </div>
+  </div>
+
+  <div class="span5">
+    <div class="control-group">
+      <%= label_tag :message, 'Your message' %>
+      <%= text_area_tag :message, params[:message], :rows => 10 %>
+    </div>
+
+    <p><%= submit_tag 'Send', :class => 'btn btn-primary' %></p>
+  </div>
+</div>
+<% end %>

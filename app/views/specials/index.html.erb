@@ -1,0 +1,7 @@
+<h2>Specials <%= @scope %></h2>
+
+<% if @specials %>
+  <%= render :partial => 'specials/table', :locals => {:specials => @specials} %>
+<% else %>
+  <div class="live-load" data-path="<%= specials_path(:ajax) %>" data-query="<%= live_query_params %>"></div>
+<% end %>

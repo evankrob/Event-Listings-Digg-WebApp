@@ -1,0 +1,39 @@
+<% email ||= false %>
+<% host ||= nil %>
+
+<table id="events" class="table table-hover row-links">
+<% unless email %>
+  <thead>
+    <tr>
+      <th><%= glyph 'resize-vertical' unless email %> What</th>
+      <th><%= glyph 'resize-vertical' unless email %> When</th>
+      <th><%= glyph 'resize-vertical' unless email %> Where</th>
+    </tr>
+  </thead>
+<% end %>
+  <tbody>
+    <% events.each do |event| %>
+      <% url = host ? venue_event_url(event.venue.city, event.venue.to_uri, event, :host => host) : venue_event_path(event.venue.city, event.venue.to_uri, event) %>
+      <tr data-href="<%= url %>">
+        <td data-value="<%= event.name %>">
+          <%= link_to(event.name, url)  %><br />
+          <span class="muted"><%= event.category.name %></span>
+        </td>
+
+        <td data-value="<%= event.next_occurrence.try(:starts_at).try(:to_date).to_s %>">
+          <%= occurrences_display(event) %>
+        </td>
+
+        <td data-value="<%= event.venue.name %>">
+          <%= venue_display(event, host) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% unless email %>
+<script>
+  var sorter = new TableSorter('events', [0, 1, 2]);
+</script>
+<% end %>

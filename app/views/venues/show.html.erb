@@ -1,0 +1,16 @@
+<address>
+  <h2><%= @venue.name %></h2>
+  <%= @venue.street %><br>
+  <%= @venue.city %>, <%= @venue.state %> <%= @venue.zip %><br>
+<% if @venue.phone %>
+  <abbr title="Phone">P:</abbr> <%= @venue.phone %>
+<% end %>
+</address>
+
+<% unless @venue.url.blank? %>
+  <p><%= auto_link @venue.url %></p>
+<% end %>
+
+<p><%= link_to "See everything in #{@venue.city} &raquo;".html_safe, city_path(@venue.city) %></p>
+
+<%= render :partial => 'events/tabs' %>

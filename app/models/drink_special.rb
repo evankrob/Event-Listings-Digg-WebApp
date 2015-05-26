@@ -1,0 +1,2 @@
+class DrinkSpecial < Special
+end

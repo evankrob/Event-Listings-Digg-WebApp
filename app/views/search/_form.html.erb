@@ -1,0 +1,63 @@
+<% subscribe ||= false %>
+
+  <div class="control-group">
+    <%= label_tag 'search_event', 'Event', :class => 'control-label' %>
+    <div class="controls">
+      <%= text_field_tag 'search[event]', @search[:event], :placeholder => 'Event name' %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= label_tag 'search_venue', 'Venue', :class => 'control-label' %>
+    <div class="controls">
+      <%= text_field_tag 'search[venue]', @search[:venue], :placeholder => 'Venue name' %>
+    </div>
+  </div>
+
+<% unless subscribe %>
+  <div class="control-group">
+    <%= label_tag 'search_start_date', 'Dates', :class => 'control-label' %>
+    <div class="controls">
+      <div class="input-append">
+        <%= text_field_tag 'search[start_date]', @search[:startdate] || Date.today.strftime('%m/%d/%Y'), :placeholder => 'Pick a date', :class => 'input-small datepicker' %>
+        <span class="add-on"><i class="icon-calendar"></i></span>
+      </div>
+
+      <small class="muted">through</small>
+
+      <div class="input-append">
+        <%= text_field_tag 'search[end_date]', @search[:end_date], :placeholder => 'Pick a date', :class => 'input-small datepicker' %>
+        <span class="add-on"><i class="icon-calendar"></i></span>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+  <div class="control-group">
+    <%= label_tag 'search_cities', 'Cities', :class => 'control-label' %>
+    <div class="controls two-column">
+    <% Venue.cities.each do |city| %>
+      <% input_id = "search_cities_#{city.parameterize}" %>
+      <% checked = @search[:cities] && @search[:cities].include?(city) %>
+      <p><%= label_tag input_id, check_box_tag('search[cities][]', city, checked, :id => input_id) << " #{city}" %></p>
+    <% end %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= label_tag 'search_categories', 'Categories', :class => 'control-label' %>
+    <div class="controls two-column">
+    <% Category.all.each do |category| %>
+      <% input_id = "search_categories_#{category.id}" %>
+      <% checked = @search[:categories] && @search[:categories].include?(category.id.to_s) %>
+      <p><%= label_tag input_id, check_box_tag('search[categories][]', category.id, checked, :id => input_id) << " #{category}" %></p>
+    <% end %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= label_tag 'search_tags_proxy', 'Tags', :class => 'control-label' %>
+    <div class="controls">
+      <%= text_field_tag 'search[tags_proxy]', @search[:tags], :class => 'tag_list', :"data-hidden-field-name" => 'search[tags]', :placeholder => 'Ex: concert, pizza', :autocomplete => 'off' %>
+    </div>
+  </div>

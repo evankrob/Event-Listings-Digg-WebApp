@@ -1,0 +1,19 @@
+<h2>Subscribe</h2>
+
+<%= form_for @subscription, :html => {:class => 'form-horizontal'} do |f| %>
+  <%= error_messages @subscription %>
+
+  <%= render :partial => 'search/form', :locals => {:subscribe => true} %>
+
+  <div class="form-actions">
+    <p>
+      <%= f.label :frequency, 'How often would you like to be notified?' %>
+      <%= f.select :frequency, frequencies_for_select %>
+    </p>
+
+    <div class="input-append">
+      <%= f.text_field :email, :placeholder => 'Enter your email' %>
+      <%= f.submit 'Subscribe', :class => 'btn btn-primary' %>
+    </div>
+  </div>
+<% end %>

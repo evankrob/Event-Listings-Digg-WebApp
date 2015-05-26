@@ -1,0 +1,77 @@
+<%= form_for @event, :html => { :class => 'form-horizontal' } do |f| %>
+  <fieldset>
+    <legend>Submit an Event</legend>
+
+    <%= error_messages @event %>
+
+    <div class="control-group">
+      <%= f.label :name, 'Title', :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :name, :placeholder => 'Name of the event' %>
+      </div>
+    </div>
+
+    <%= f.fields_for :occurrences do |o| %>
+      <div class="control-group">
+        <%= o.label :starts_at_date, 'When', :class => 'control-label' %>
+        <div class="controls">
+          <div class="input-append">
+            <%= o.text_field :starts_at_date, :placeholder => 'Pick a date', :class => 'input-small datepicker' %>
+            <span class="add-on"><i class="icon-calendar"></i></span>
+          </div>
+
+          <div class="input-append bootstrap-timepicker">
+            <%= o.text_field :starts_at_time, :placeholder => 'Start time', :class => 'input-small timepicker' %>
+            <span class="add-on"><i class="icon-time"></i></span>
+          </div>
+
+          <div class="input-append bootstrap-timepicker">
+            <%= o.text_field :ends_at_time, :placeholder => 'End time', :class => 'input-small timepicker' %>
+            <span class="add-on"><i class="icon-time"></i></span>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="control-group">
+      <%= f.label :venue_name, 'Venue', :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :venue_name, :placeholder => 'Start typing a venue name', :autocomplete => 'off', :"data-provide" => 'typeahead', :"data-source" => @venues.map(&:name).to_json %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :category_id, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.collection_select( :category_id, @categories, :id, :name, {:include_blank => true}) %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :tag_list, 'Tags', :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :tag_list, :class => 'tag_list ', :"data-hidden-field-name" => 'event[tag_list_proxy]', :placeholder => 'Ex: concert, pizza', :autocomplete => 'off' %>
+        <span class="muted"><small>optional</small></span>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :url, 'Web page', :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :url, :placeholder => 'http://www.example.com' %>
+        <span class="muted"><small>optional</small></span>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :description, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_area :description, :class => 'span7 ', :placeholder => 'Enter the event details here.', :rows => 7 %>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <%= f.submit 'Submit event', :class => 'btn btn-primary' %>
+    </div>
+  </fieldset>
+<% end %>
