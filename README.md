@@ -1,0 +1,1 @@
+An attempt to make an event listings web app that had digg or reddit functionality. Turns out, getting start-up traction is hard
